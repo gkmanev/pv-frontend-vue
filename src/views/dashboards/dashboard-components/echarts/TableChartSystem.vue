@@ -147,8 +147,8 @@
    
    <style scoped>
  
-    ::v-deep(.table td) {
-      padding: 0 !important;
+    .table td {
+        padding: 0 !important;
     }
    .led-indicator {
    display: inline-block;
