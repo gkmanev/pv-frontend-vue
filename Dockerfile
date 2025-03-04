@@ -1,28 +1,43 @@
-# Use the official Node.js image
-FROM node:16 AS builder
+# Use an official Node.js image as the base image
+FROM node:14 as builder
 
-# Set the working directory
+# Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Copy the package.json and package-lock.json
+# Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
-# Delete node_modules and package-lock.json to avoid issues with corrupted packages
-RUN rm -rf node_modules package-lock.json
+# Upgrade npm to a compatible version
+RUN npm install -g npm@7
+
+RUN npm cache clean --force
 
 # Install dependencies
-RUN npm install --no-cache
-
-# Continue with the rest of the Dockerfile
-RUN npm uninstall @babel/polyfill
-RUN npm install @vue/cli-plugin-babel@latest @vue/cli-service@latest sass@latest sass-loader@latest vue-template-compiler@latest
-RUN rm -rf node_modules
 RUN npm install
 
+# Update the browserslist database to avoid warnings during build
+RUN npx browserslist@latest --update-db
+
+RUN npm update css-loader postcss cssnano
+
+
+# Copy the rest of the application code to the working directory
 COPY . .
 
 # Build the Vue.js application
 RUN npm run build
 
-FROM nginx:alpine
+
+
+# Build step 2(Deploying build on NGINX)
+FROM nginx:1.17
+
+# Update package lists and install necessary packages
+RUN apt-get update -y && apt-get install -y wget && rm -rf /var/lib/apt/lists/*
+
+# Clean up default Nginx HTML content
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy configuration and built files from the builder stage
+COPY --from=builder /usr/src/app/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
