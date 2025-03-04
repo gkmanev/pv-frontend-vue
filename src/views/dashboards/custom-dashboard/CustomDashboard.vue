@@ -17,9 +17,9 @@
         </b-col>      -->
     </b-row>
     <b-row>
-      <b-col cols="12" class="mt-4">
+      <!-- <b-col cols="12" class="mt-4">
           <TableChartSystem />          
-      </b-col>     
+      </b-col>      -->
     </b-row>
 
   </div>  
@@ -41,7 +41,7 @@
   //import MapCard from '../dashboard-components/echarts/MapCard.vue';
  //import StateOfCharge from '../dashboard-components/echarts/StateOfCharge.vue';
   import MeasurementData from '../dashboard-components/echarts/MeasurementData.vue';
-  import TableChartSystem from '../dashboard-components/echarts/TableChartSystem.vue';
+  //import TableChartSystem from '../dashboard-components/echarts/TableChartSystem.vue';
   //import MeasurementDataDayAhead from '../dashboard-components/echarts/MeasurementDataDayAhead.vue';
 //  import PowerFlow from '../dashboard-components/echarts/PowerFlow.vue';
 
@@ -93,7 +93,7 @@
     //InvertorPower,
     //HighChartTest,
     //PriceChart,
-    TableChartSystem,   
+    //TableChartSystem,   
     //MapCard,
     //GridNodes,
     //StateOfCharge,
