@@ -1,5 +1,5 @@
 # Use an official Node.js image as the base image
-FROM node:16 as builder
+FROM node:14 as builder
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
@@ -10,11 +10,19 @@ COPY package*.json ./
 # Upgrade npm to a compatible version
 RUN npm install -g npm@7
 
+
+RUN npm cache clean --force
+
 # Install dependencies
 RUN npm install
 
 # Update the browserslist database to avoid warnings during build
 RUN npx browserslist@latest --update-db
+
+RUN npm update
+RUN npm audit fix --force
+
+ENV NODE_OPTIONS=--max_old_space_size=4096
 
 # Copy the rest of the application code to the working directory
 COPY . .
