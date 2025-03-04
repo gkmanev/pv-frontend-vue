@@ -8,9 +8,7 @@
          <template #cell(status)="{ item }">
            <span class="led-indicator" :class="getLedClass(item.online)"></span>
          </template>
-         <template #cell(updated)="{ item }">
-           <span class="led-indicator" :class="getLedClass(item.commercial)"></span>
-         </template>
+
        </b-table>
 
        <p class="btn-grp">
