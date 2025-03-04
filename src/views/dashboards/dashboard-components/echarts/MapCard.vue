@@ -1,24 +1,26 @@
 <template>
-    <div class="widget card" ref="widgetRef">
-      <div class="card-content">
-        <div id="map-canvas" class="heatmap" style="height: 450px;"></div>
-      </div>
-    </div>
+  <b-card>
+        <div id="map-canvas" class="heatmap" style="height: 250px; width: 100%;"></div>
+  </b-card>
+
   </template>
   
   <script>
   import * as L from 'leaflet';
   import 'leaflet/dist/leaflet.css';
   import 'leaflet.heat'; // Import Leaflet.heat plugin
-
+  import axios from 'axios';
   import { mapState } from 'vuex';
   
   export default {
     data() {
       return {
         polling: null,
-        initialCenter: [42.9222, 25.9292], // Initial map center
+        initialCenter: [52.578824, 17.795749], // Initial map center
         addressPoints: [],
+        deviceData: [],
+        avgProductionPerFarm: {},
+        
         heatLayerOptions: {
           radius: 25,
           blur: 25,
@@ -35,9 +37,9 @@
     },
   
     mounted() {
-      this.initializeMap();
-      this.addData();
+      this.initializeMap();      
       this.pollData();
+      this.fetchData();
     },
   
     methods: {
@@ -55,19 +57,70 @@
       normalizeValues(val) {
         return val / 100; // Adjust normalization as needed
       },
+
+    async fetchData() {
+      try {       
+
+        let url = 'http://209.38.208.230:8000/api/pvmeasurementdata/?all=all'
+        const response = await axios.get(url);             
+        this.deviceData = response.data;
+        if (this.deviceData.length > 0) {
+          this.calculateAverageProductionPerFarm();
+        } else {
+          console.error('No data found');
+        }
+        this.calculateAverageProductionPerFarm();
+      } catch (error) {
+        console.error('There was an error fetching the data!', error);
+      }
+    },
+    calculateAverageProductionPerFarm() {
+      const farmProduction = {};
+
+      this.deviceData.forEach(farm => {
+        if (!farmProduction[farm.farm]) {
+          
+          farmProduction[farm.farm] = {
+            totalProduction: 0,
+            count: 0,
+            lat: farm.latitude,
+            long: farm.longitude,
+          };
+        }
+        farmProduction[farm.farm].totalProduction += parseFloat(farm.total_production);
+        farmProduction[farm.farm].count += 1;
+      });
+
+      for (const farm in farmProduction) {
+        farmProduction[farm].averageProduction = farmProduction[farm].totalProduction / farmProduction[farm].count;
+        farmProduction[farm].farm = farm;
+        // farmProduction[farm].averageProduction = farmProduction[farm].lat;  
+      }
+      this.avgProductionPerFarm = farmProduction;  
+      
+      
+      this.addData();    
+     
+    },
   
       addData() {
+
         this.addressPoints = [];
-        this.all_devs.forEach((el) => {
-          const power = parseFloat(el.power);
-          if (!isNaN(power) && power >= 0 && el.lat) {
-            let intensity = this.normalizeValues(power);
-            if(el.lat == 42.6718 || el.lat == 42.6218){
-              intensity = 3
-            }
-            this.addressPoints.push([el.lat, el.long, intensity]);
+        for (const farm in this.avgProductionPerFarm) {
+          
+          const farmData = this.avgProductionPerFarm[farm];  
+               
+          const averageProduction = farmData.averageProduction;          
+          const lat = farmData.lat;
+          const long = farmData.long;
+          if (!isNaN(averageProduction) && averageProduction >= 0 && lat) {
+            // let intensity = this.normalizeValues(averageProduction);
+            this.addressPoints.push([lat, long, averageProduction]);
           }
-        });
+          
+        }
+
+        
   
         if (this.heatLayer) {
           this.map.removeLayer(this.heatLayer);
@@ -80,12 +133,12 @@
       initializeMap() {
         this.map = L.map('map-canvas', {
           scrollWheelZoom: false // Disable scroll wheel zoom
-        }).setView(this.initialCenter, 7);
+        }).setView(this.initialCenter, 6);
         L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
           attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
           subdomains: ['a', 'b', 'c'],
         }).addTo(this.map);
-        this.addData(); // Initialize with initial data
+        //this.addData(); // Initialize with initial data
       },
   
       beforeDestroy() {
