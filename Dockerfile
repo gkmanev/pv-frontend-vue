@@ -1,43 +1,30 @@
-# Use an official Node.js image as the base image
-FROM node:14 as builder
+# Use the official Node.js image
+FROM node:16 AS builder
 
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the working directory
+# Install the dependencies
 COPY package*.json ./
 
-# Upgrade npm to a compatible version
-RUN npm install -g npm@7
+RUN npm install --no-cache
 
-RUN npm cache clean --force
+# Remove @babel/polyfill to avoid conflicts (if it's in the dependencies)
+RUN npm uninstall @babel/polyfill
 
-# Install dependencies
+# Update dependencies (this step is optional, if you'd like to always install the latest)
+RUN npm install @vue/cli-plugin-babel@latest @vue/cli-service@latest sass@latest sass-loader@latest vue-template-compiler@latest
+
+# Remove node_modules and reinstall (this ensures clean dependencies)
+RUN rm -rf node_modules
 RUN npm install
 
-# Update the browserslist database to avoid warnings during build
-RUN npx browserslist@latest --update-db
-
-RUN npm update css-loader postcss cssnano
-
-
-# Copy the rest of the application code to the working directory
+# Copy the rest of the application
 COPY . .
 
-# Build the Vue.js application
+# Build the Vue.js application (this step should work with minification disabled)
 RUN npm run build
 
-
-
-# Build step 2(Deploying build on NGINX)
-FROM nginx:1.17
-
-# Update package lists and install necessary packages
-RUN apt-get update -y && apt-get install -y wget && rm -rf /var/lib/apt/lists/*
-
-# Clean up default Nginx HTML content
-RUN rm -rf /usr/share/nginx/html/*
-
-# Copy configuration and built files from the builder stage
-COPY --from=builder /usr/src/app/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+# Final production image (optional based on your setup)
+FROM nginx:alpine
 COPY --from=builder /usr/src/app/dist /usr/share/nginx/html
