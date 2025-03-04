@@ -1,37 +1,36 @@
 <template>
-    <b-row class="justify-content-start">  
-      
-        <b-col cols="4">            
+
+  <div>
+    <b-row>     
+        <b-col cols="12">            
             <SelectComponent />
         </b-col>
-        <b-col cols="3">            
-            <RangeComponent class="mb-4" />          
-        </b-col>     
-        
-        <b-col v-if="isDevSelected" cols="12">        
-            <!-- <AwesomeCards /> -->
-            <SalesCard />
-      </b-col>        
-        <b-col cols="8">
-          <b-col cols="3">
-            <SliderComponent class="mb-4" />
-        </b-col> 
-            <LineChart />
-        </b-col>
-        <b-col cols="4">
-          <CustomProgress />
-          <CorelationsHeat />
-        </b-col>
-        <b-col cols="12">
-            <PriceChart />
-        </b-col> 
-        <b-col cols="12">
-            <WeatherChart />
-        </b-col>   
-        <b-col cols="12">
-            <WeatherChartClouds />
-        </b-col>   
     </b-row>
+    <b-row>
+        <b-col class="mt-5" cols="12">            
+            <RangeComponent class="mb-4" :isVisible="true" />          
+        </b-col>
+    </b-row>
+    <b-row v-if="isDevSelected">
+      <b-col cols="12" class="mt-4">
+        <b-card>
+          <MeasurementData />          
+        </b-card>
+      </b-col>    
+    <!-- <b-row v-if="isDevSelected"> -->
+      <b-col cols="12" class="mt-4">
+        <b-card>
+          <WeatherDataChart />
+        </b-card>
+      </b-col>
+      <!-- <b-col cols="12" class="mt-4">
+        <b-card>
+          <OpenMeteoWeatherChart />
+        </b-card>
+      </b-col> -->
+    </b-row>
+     
+  </div>
   </template>
   <script>
   // -----------------------------------------
@@ -39,20 +38,11 @@
   // -----------------------------------------
   
   import SelectComponent from "../dashboard-components/select-component/SelectComponent";
-  import RangeComponent from "../dashboard-components/range-component/RangeComponent";
-  import LineChart from "../dashboard-components/echarts/LineChart";  
-  import PriceChart from "../dashboard-components/echarts/PriceChart"; 
-  import WeatherChart from "../dashboard-components/echarts/WeatherChart"; 
-  // import AwesomeCards from "../dashboard-components/awesome-cards/AwesomeCards";  
-  import CustomProgress from "../dashboard-components/progress-cards/CustomProgress.vue";
+  import RangeComponent from "../dashboard-components/range-component/RangeComponent";  
+  import MeasurementData from "../dashboard-components/echarts/MeasurementData.vue";
   import { mapState } from 'vuex';
-  import SalesCard from "../dashboard-components/sales-card/SalesCard.vue";
-  import WeatherChartClouds from "../dashboard-components/echarts/WeatherChartClouds.vue";
-import CorelationsHeat from "../dashboard-components/echarts/CorelationsHeat.vue";
-import SliderComponent from "../dashboard-components/slider-component/SliderComponent.vue";
-
-
-
+  import WeatherDataChart from "../dashboard-components/echarts/WeatherDataChart.vue";
+  //import OpenMeteoWeatherChart from "../dashboard-components/echarts/OpenMeteoWeatherChart.vue";
   
   // -----------------------------------------
   // Export Here
@@ -64,32 +54,27 @@ import SliderComponent from "../dashboard-components/slider-component/SliderComp
       isDevSelected: false      
       
     }),
-    components: {
+    components: {  
    
-    LineChart,
     SelectComponent,    
-    RangeComponent,
-    PriceChart,
-   // AwesomeCards,
-    WeatherChart,
-    CustomProgress,
-    SalesCard,
-    WeatherChartClouds,
-    CorelationsHeat,
-    SliderComponent
+    RangeComponent,  
+    MeasurementData,
+    WeatherDataChart,
+    //OpenMeteoWeatherChart
     
 },
 
-  created(){
-    this.checkSelectedDev()
-  },
-
-  computed: {
-      ...mapState(['selectedDev']),
+    mounted() {
+      this.checkSelectedDev()  
     },
 
+  computed: {
+      ...mapState(['selectedDev', 'dateRange']),
+    },
+  
 
   methods: {
+
     checkSelectedDev(){
       if(this.selectedDev){
         this.isDevSelected = true
@@ -97,14 +82,20 @@ import SliderComponent from "../dashboard-components/slider-component/SliderComp
       else{
         this.isDevSelected = false
       }
-    } 
+    }, 
+
   },
   watch: {
     selectedDev(newDev, oldDev) {
-      if (newDev !== oldDev) {
-        this.isDevSelected = true;
+      if (newDev !== oldDev) {        
+        this.checkSelectedDev()
       }
     },
+    dateRange(newRange, oldRange) {
+        if (newRange !== oldRange) {    
+            this.checkSelectedDev()
+      }
+   },
 
   },
 
@@ -113,5 +104,9 @@ import SliderComponent from "../dashboard-components/slider-component/SliderComp
 
 <style scoped>
 
-/* Add your component-specific styles here */
+.widget-container {
+  display: flex;
+  justify-content: space-between; /* Align items next to each other */
+  max-height: 220px;
+}
 </style>
