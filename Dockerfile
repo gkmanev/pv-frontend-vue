@@ -18,6 +18,8 @@ RUN npm install
 
 # Update the browserslist database to avoid warnings during build
 RUN npx browserslist@latest --update-db
+RUN npm install apexcharts@^4.0.0
+
 
 RUN npm update
 RUN npm audit fix --force
