@@ -16,6 +16,8 @@ RUN npm install
 # Update the browserslist database to avoid warnings during build
 RUN npx browserslist@latest --update-db
 
+RUN npm uninstall @intervolga/optimize-cssnano-plugin
+
 # Copy the rest of the application code to the working directory
 COPY . .
 
