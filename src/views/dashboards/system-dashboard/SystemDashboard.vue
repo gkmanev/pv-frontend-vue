@@ -1,9 +1,9 @@
 <template>
     <b-row class="justify-content-start">   
 
-        <b-col cols="12">
+        <!-- <b-col cols="12">
             <TableChartSystem />
-        </b-col>
+        </b-col> -->
       
       <!-- --------------------------------------------------------- 
       Sales Summary
@@ -20,7 +20,7 @@
   // Import Components Here
   // -----------------------------------------
 
-  import TableChartSystem from "../dashboard-components/echarts/TableChartSystem";
+  //import TableChartSystem from "../dashboard-components/echarts/TableChartSystem";
 
   
 
@@ -58,7 +58,7 @@
     }),
     components: {
 
-    TableChartSystem,   
+   // TableChartSystem,   
 
     
 },
