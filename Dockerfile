@@ -10,6 +10,8 @@ COPY package*.json ./
 # Upgrade npm to a compatible version
 RUN npm install -g npm@7
 
+RUN npm cache clean --force
+
 # Install dependencies
 RUN npm install
 
