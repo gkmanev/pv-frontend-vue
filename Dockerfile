@@ -1,5 +1,3 @@
-# Build step 1(installing node modules and preparing compiled build)
-
 # Use an official Node.js image as the base image
 FROM node:14 as builder
 
@@ -9,6 +7,9 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
+# Upgrade npm to a compatible version
+RUN npm install -g npm@7
+
 # Install dependencies
 RUN npm install
 
@@ -17,6 +18,7 @@ COPY . .
 
 # Build the Vue.js application
 RUN npm run build
+
 
 
 # Build step 2(Deploying build on NGINX)
