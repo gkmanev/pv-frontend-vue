@@ -7,11 +7,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     selectedDev: '',
-    sliderValue : {},
+    confidanceCheck: false,
     all_devs: [],
+    updateZoom:{"min:": 0, "max": 0},
+    updateResponse:[],
     checkedDevs:[],
-    selectBoxDevs:[],
-    dateRange: 'today',
+    selectBoxDevs:[],    
+    dateRange: 'ytd',
     Theme: "dark", // theme can be light or dark
     LayoutType: "full-sidebar", // this can be full-sidebar, mini-sidebar
     Sidebar_drawer: false,
@@ -32,19 +34,20 @@ export default new Vuex.Store({
     ],
   },
   mutations: {
-
-    SET_SLIDER_VALUE(state, payload){
-      
-      state.sliderValue = payload
-    },
-
-    CREATE_SELECT_BOX_DEVS(state, payload){
-      
+    CREATE_SELECT_BOX_DEVS(state, payload){      
       state.selectBoxDevs = payload
     },
-
+    SET_CHART_ZOOM(state, payload){
+      state.updateZoom = payload
+    },
+    SET_RESPONSE_DATA(state, payload){    
+      state.updateResponse = payload
+    },
     SET_SELECTED_DEV(state, payload){
       state.selectedDev = payload
+    },
+    SET_CONFIDANCE(state, payload){
+      state.confidanceCheck = payload
     },
 
     CREATE_ALL_DEVS(state, create_all) {
@@ -54,6 +57,7 @@ export default new Vuex.Store({
     CREATE_CHECKED_DEVS(state, checked) {
       state.checkedDevs = checked
     },
+
 
     SET_DATE_RANGE(state, newRange) {
       state.dateRange = newRange;
@@ -94,9 +98,14 @@ export default new Vuex.Store({
 
   },
   actions: {
-
-    updateSliderValue({ commit }, newRange) {
-      commit('SET_SLIDER_VALUE', newRange);
+    updateResponseData({ commit }, data) {     
+      commit('SET_RESPONSE_DATA', data);
+    },
+    updateZoomData({ commit }, data) {     
+      commit('SET_CHART_ZOOM', data);
+    },
+    updateConfidance({ commit }, data) {     
+      commit('SET_CONFIDANCE', data);
     },
     updateDateRange({ commit }, newRange) {
       commit('SET_DATE_RANGE', newRange);

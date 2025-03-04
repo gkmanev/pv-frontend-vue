@@ -1,54 +1,54 @@
 <template>
-    <b-row class="justify-content-start">        
-        <b-col cols="12">        
-            <AwesomeCards />
-        </b-col>
-        <b-col cols="3">            
-            <RangeComponent class="mb-4"  @filter="handleFilter" />          
-        </b-col>
-        <b-col cols="12">
-            <HighChartTest />
-        </b-col>
-        <b-col cols="12" v-if="show">
-            <LineChart />
-        </b-col>
-        <b-col cols="12">
-            <PriceChart />
-        </b-col>
-        <b-col cols="12">
-            <MapCard />
-        </b-col>
-        <b-col cols="12">
-            <TableChart />
-        </b-col>        
-        <b-col cols="12">
-            <GridNodes />
-        </b-col>
-
-
-      <!-- --------------------------------------------------------- 
-      Sales Summary
-      --------------------------------------------------------- -->
-      <!-- <b-col cols="12">
-        <b-card class="mb-4" no-body>
-          <RevenueStatistics />
-        </b-card>
-      </b-col>      -->
+  <div>
+   
+    <b-row class="mb-4"> 
+      <b-col cols="12">            
+        <RangeComponent @filter="handleFilter" :isVisible="false" />          
+      </b-col>      
     </b-row>
+    <b-row>
+        <b-col cols="12">
+            <MeasurementData />
+        </b-col>
+    </b-row>
+    <b-row>
+        <b-col cols="12" class="mt-4">
+            <MapCard />            
+        </b-col>     
+    </b-row>
+    <b-row>
+      <b-col cols="12" class="mt-4">
+          <TableChartSystem />          
+      </b-col>     
+    </b-row>
+
+  </div>  
+  
   </template>
   <script>
   // -----------------------------------------
   // Import Components Here
   // -----------------------------------------
-  import AwesomeCards from "../dashboard-components/awesome-cards/AwesomeCards";  
-  import RangeComponent from "../dashboard-components/range-component/RangeComponent";
-  import LineChart from "../dashboard-components/echarts/LineChart";
-  import PriceChart from "../dashboard-components/echarts/PriceChart";
-  import TableChart from "../dashboard-components/echarts/TableChart";
 
-  import GridNodes from "../dashboard-components/echarts/GridNodes";
+  import { mapState } from 'vuex';
+  // import AwesomeCards from "../dashboard-components/awesome-cards/AwesomeCards";  
+  import RangeComponent from "../dashboard-components/range-component/RangeComponent";
+  // import InvertorPower from "../dashboard-components/echarts/InvertorPower.vue";
+  // import PriceChart from "../dashboard-components/echarts/PriceChart";
+  // import TableChart from "../dashboard-components/echarts/TableChart";
+
+  // import GridNodes from "../dashboard-components/echarts/GridNodes";
   import MapCard from '../dashboard-components/echarts/MapCard.vue';
-  import HighChartTest from '../dashboard-components/echarts/HighChartTest.vue';
+ //import StateOfCharge from '../dashboard-components/echarts/StateOfCharge.vue';
+  import MeasurementData from '../dashboard-components/echarts/MeasurementData.vue';
+  import TableChartSystem from '../dashboard-components/echarts/TableChartSystem.vue';
+  //import MeasurementDataDayAhead from '../dashboard-components/echarts/MeasurementDataDayAhead.vue';
+//  import PowerFlow from '../dashboard-components/echarts/PowerFlow.vue';
+
+// import RevenueChart from "../dashboard-components/echarts/RevenueChart.vue";
+
+  //import HighChartTest from '../dashboard-components/echarts/HighChartTest.vue';
+
   
 
 
@@ -61,6 +61,9 @@
     data: () => ({
       title: "ModernDashboard",
       show:false,
+      updateTodayData: [],
+      updateYearData:[],
+      updateMonthData: [],
       // Month Table
       month1: 0,
       monthoptions1: [
@@ -85,14 +88,20 @@
       ],
     }),
     components: {
-    AwesomeCards,    
+    // AwesomeCards,    
     RangeComponent,
-    LineChart,
-    PriceChart,
-    TableChart,   
+    //InvertorPower,
+    //HighChartTest,
+    //PriceChart,
+    TableChartSystem,   
     MapCard,
-    GridNodes,
-    HighChartTest 
+    //GridNodes,
+    //StateOfCharge,
+    MeasurementData,
+    //MeasurementDataDayAhead
+    //PowerFlow,   
+    //RevenueChart
+    //LineChart
     
 },
     methods: {
@@ -102,10 +111,53 @@
         console.log(`Filtering content for ${period}`);
         // Make API request here and update content
         },
+
+
+        
+
+
   },
-    created() {
+    mounted() {
         // Trigger "today" filter when the component is created
-        this.handleFilter('today');
+        console.log()
+        this.handleFilter('2024');
+      
     },
+    computed: {
+      ...mapState(['dateRange']),  
+    },
+
+//     watch: {     
+//       dateRange(newRange, oldRange) {
+//         if (newRange !== oldRange) {
+//           if(this.dateRange === 'today' || this.dateRange === 'dam'){
+//             this.fetchToday()
+//           } 
+//           else if (this.dateRange === 'month'){
+//             this.fetchMonth()
+//           }    
+//           else if(this.dateRange === 'year'){
+//             this.fetchYear()
+//           }
+              
+//       }
+//    },
+   
+//  },
+
+
+
     };
   </script>
+
+<style scoped>
+.widget-container {
+  display: flex;
+  justify-content: space-between; /* Align items next to each other */
+  max-height: 220px;
+}
+.battery-chart{
+  max-width: 120px;
+
+}
+</style>
