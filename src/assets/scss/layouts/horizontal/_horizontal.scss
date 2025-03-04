@@ -1,0 +1,143 @@
+@include media-breakpoint-up(lg) {
+  .full-sidebar .horizontal-page-wrapper,
+  .mini-sidebar .horizontal-page-wrapper {
+    padding-top: 70px;
+    .topbar {
+      width: 100%;
+      z-index: 4;
+    }
+    .container-fluid {
+      max-width: 1300px;
+    }
+    .min-height {
+      min-height: calc(100vh - 185px);
+    }
+  }
+}
+
+.horizontal-left-sidebar {
+  position: relative;
+  z-index: 3;
+  color: $sidebar-text;
+  &.bg-white {
+    color: $sidebar-text-dark;
+  }
+  .nav .nav-item {
+    position: relative;
+    .nav-link {
+      color: inherit;
+      cursor: pointer;
+      align-items: center;
+      padding: 12px 15px;
+      opacity: 0.7;
+      &:hover,
+      &.router-link-exact-active {
+        opacity: 1;
+      }
+
+      i.mdi,
+      i.feather {
+        margin: 0 7px 0 0;
+        font-size: $sidebar-icons-size;
+      }
+      i.feather,
+      i > .feather {
+        height: 18px;
+        width: 18px;
+        fill: rgba(0, 0, 0, 0.2);
+      }
+      &:hover.collapsed,
+      &.not-collapsed {
+        background: rgba(0, 0, 0, 0.05);
+      }
+    }
+    &.mega-menu {
+      position: static;
+      .sub-menu {
+        width: 100%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        max-width: 1300px;
+      }
+    }
+    &.two-column {
+      position: static;
+      .sub-menu {
+        width: 400px;
+        .nav-item {
+          float: left;
+          width: 50%;
+          vertical-align: top;
+        }
+      }
+    }
+    .sub-menu {
+      position: absolute;
+      display: none;
+      min-width: 220px;
+      box-shadow: $shadow;
+      padding: 15px 0;
+    }
+    &.first-dd:hover {
+      > .nav-link {
+        opacity: 1;
+      }
+      .sub-menu {
+        display: block;
+      }
+    }
+    .sub-menu .nav-link i {
+      font-size: 16px;
+      margin: 0 8px;
+    }
+    .dd-arrow {
+      font-size: 12px;
+      margin: 0 5px;
+    }
+  }
+}
+@include media-breakpoint-up(lg) {
+  .horizontal-left-sidebar {
+    .nav .nav-item {
+      &.mega-menu {
+        .sub-menu {
+          .nav-item {
+            display: inline-block;
+            min-width: 220px;
+          }
+        }
+      }
+    }
+  }
+}
+@include media-breakpoint-down(md) {
+  .horizontal-left-sidebar {
+    position: fixed;
+    height: 100%;
+    top: 0;
+    z-index: 11;
+    overflow-y: auto;
+    .navbar-header {
+      padding: 0 10px;
+      height: 60px;
+      line-height: 55px;
+    }
+    .container {
+      padding: 0;
+    }
+    .nav {
+      flex-direction: column;
+      .nav-item {
+        .sub-menu {
+          position: relative;
+          box-shadow: none;
+          padding: 0;
+        }
+      }
+    }
+  }
+  .mini-sidebar .horizontal-page-wrapper {
+    padding-top: 60px;
+  }
+}

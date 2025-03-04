@@ -1,0 +1,87 @@
+{
+  "name": "monster-bootstrap-vue",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@maptiler/leaflet-maptilersdk": "^2.0.0",
+    "@vue/composition-api": "^1.7.2",
+    "@vue/runtime-core": "^3.4.15",
+    "algoliasearch": "^4.5.1",
+    "apexcharts": "^3.21.0",
+    "axios": "^1.6.5",
+    "bootstrap-vue": "^2.21.2",
+    "chart.js": "^3.8.0",
+    "core-js": "^3.6.5",
+    "echarts": "^5.4.3",
+    "feather-icons": "^4.28.0",
+    "leaflet": "^1.9.4",
+    "leaflet.heat": "^0.2.0",
+    "moment": "^2.29.1",
+    "mqtt": "^5.3.5",
+    "node-sass": "^9.0.0",
+    "nprogress": "^0.2.0",
+    "paho-mqtt": "^1.1.0",
+    "plotly.js-dist": "^2.30.1",
+    "save": "^2.9.0",
+    "vue": "^2.6.11",
+    "vue-apexcharts": "^1.6.2",
+    "vue-chartjs": "^4.0.0",
+    "vue-echarts": "^6.6.8",
+    "vue-feather": "^1.1.1",
+    "vue-form-wizard": "^0.8.4",
+    "vue-fullcalendar": "^1.0.9",
+    "vue-google-heatmap": "^1.1.0",
+    "vue-hljs": "^2.0.0",
+    "vue-i18n": "^8.24.2",
+    "vue-instantsearch": "^3.6.0",
+    "vue-perfect-scrollbar": "^0.2.1",
+    "vue-router": "^3.5.1",
+    "vue-server-renderer": "^2.6.12",
+    "vue-world-map": "^0.1.1",
+    "vue2-leaflet": "^2.7.1",
+    "vuedraggable": "^2.24.1",
+    "vuelidate": "^0.7.6",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@babel/polyfill": "^7.11.5",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "bootstrap": "4.6.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "mutationobserver-shim": "^0.3.7",
+    "popper.js": "^1.16.1",
+    "portal-vue": "^2.1.7",
+    "sass": "^1.26.11",
+    "sass-loader": "^10.0.2",
+    "vue-cli-plugin-bootstrap-vue": "~0.7.0",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

@@ -1,0 +1,102 @@
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+// Theme Skin Colors
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+
+$themecolor-dark: #028ee1;
+$themecolor-alt: #26c6da;
+$themecolor: #009efb;
+$theme-light: #fff;
+$theme-dark: #212529;
+
+$skin1: #90a4ae;
+$skin2: #55ce63;
+$skin3: #363d4a;
+$skin4: #009efb;
+$skin5: #7460ee;
+$skin6: #fff;
+
+$gray-0: $white;
+
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+// Header Settings
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+
+$topbar: $theme-light;
+$topbar-height: 70px;
+$topbar-navlink-padding: 0px 15px;
+$topbar-navlink-font-size: 0.875rem;
+$topbar-navlink-height: 70px;
+$topbar-navbrand-padding: 0 10px 0 10px;
+
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+// Sidebar Settings
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+
+$sidebar: $theme-light;
+$sidebar-alt: #e8eff0;
+$sidebar-icons-size: 20px;
+$sidebar-text: #fff;
+$sidebar-icons: #fff;
+$sidebar-text-dark: #54667a;
+$sidebar-icons-dark: #737b88;
+
+$sidebar-width-full: 240px;
+$sidebar-width-iconbar: 180px;
+$sidebar-width-mini: 60px;
+
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+// Boxed Layout Settings
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+
+$boxed-width: 1300px;
+
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+// Shadow Settings
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+
+$shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+// Transition Settings
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+$transitions: 0.2s ease-in;
+
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+// Dark Transparent
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+$transparent-dark-bg: rgba(0, 0, 0, 0.05);
+
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+// Custom Settings
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+$lft: left;
+$rgt: right;
+$card-alt: #e4e9ef;
+
+%square {
+  border-radius: 0px;
+}
+
+%rotate45 {
+  transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+}
+
+$border-color: rgba(0, 0, 0, 0.1);
+$dark-border-color: rgba(255, 255, 255, 0.1);
+
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+// Dark Theme Colors Settings
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
+$theme-dark-bg-layout: #323743;
+$theme-dark-text-color: #b2b9bf !default;
+$theme-dark-text-color2: #d0d2d6 !default;
+$theme-dark-border-color: rgba(255, 255, 255, 0.2) !default;
+$theme-dark-focus-border-color: rgba(255, 255, 255, 0.4) !default;
+$theme-dark-card-bg: #272b34;
+$theme-dark-bg-light: #3c424e;
+$main-body-bg-dark: $gray-900 !default;
+$background-alt: #2b2b2b !default;

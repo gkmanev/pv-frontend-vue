@@ -1,0 +1,179 @@
+* {
+  outline: none;
+}
+
+a {
+  &.link {
+    color: $body-color;
+    &:hover {
+      color: $info;
+    }
+  }
+}
+
+.feather-sm {
+  width: 18px;
+  height: 18px;
+}
+
+.feather-xs {
+  width: 12px;
+  height: 12px;
+}
+
+.feather-lg {
+  width: 28px;
+  height: 28px;
+}
+
+.fs-7 {
+  font-size: 24px;
+}
+
+// editor
+.hljs {
+  background: rgb(1, 22, 39) !important;
+  border-radius: 3px;
+  color: rgb(214, 222, 235) !important;
+}
+
+.hljs-attribute,
+.hljs-bullet,
+.hljs-class,
+.hljs-function,
+.hljs-function .hljs-keyword,
+.hljs-meta-keyword,
+.hljs-selector-pseudo,
+.hljs-tag,
+.hljs-built_in,
+.hljs-emphasis,
+.hljs-name,
+.hljs-quote,
+.hljs-strong,
+.hljs-title,
+.hljs-variable {
+  color: rgb(130, 170, 255) !important;
+}
+
+.hljs-attr,
+.hljs-params,
+.hljs-template-tag,
+.hljs-type {
+  color: $warning !important;
+}
+
+.hljs-addition,
+.hljs-meta-string,
+.hljs-section,
+.hljs-selector-attr,
+.hljs-selector-class,
+.hljs-string,
+.hljs-symbol {
+  color: $danger !important;
+}
+
+// buttons
+.btn-grp .btn {
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.btn-grp .custom-dropdown.dropdown.btn-group {
+  .btn:first-child {
+    margin-right: 0;
+  }
+}
+
+// fonts
+
+.fw-medium {
+  font-weight: $font-weight-medium;
+}
+
+.font-12 {
+  font-size: 12px;
+}
+
+.font-14 {
+  font-size: 14px;
+}
+
+.font-24 {
+  font-size: 24px;
+}
+
+.font-18 {
+  font-size: 18px;
+}
+
+.op-5 {
+  opacity: 0.5;
+}
+
+.display-7 {
+  font-size: 27px;
+}
+
+.display-6 {
+  font-size: 40px;
+}
+
+// cards page
+
+.max-height-img .card-img-top {
+  height: 185px;
+}
+
+a:focus {
+  outline: none;
+}
+
+// table page
+table#table-transition-example .flip-list-move {
+  transition: transform 1s;
+}
+
+.font-9 {
+  font-size: 9px;
+}
+
+table,
+.table {
+  td,
+  th {
+    vertical-align: middle;
+    // padding: 0.75rem 1.2rem;
+  }
+  th {
+    font-weight: 400;
+    // color: $text-muted;
+    border: 0;
+    border-bottom: 0 !important;
+  }
+}
+
+.table-sm th,
+.table-sm td {
+  padding: 0.3rem 1.2rem;
+}
+
+.b-avatar .b-avatar-badge {
+  min-height: 10px !important;
+  min-width: 10px !important;
+}
+
+// icons
+.icons {
+  .my-1,
+  .my-2 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    &:hover {
+      color: $primary;
+      cursor: pointer;
+    }
+    i {
+      font-size: 20px;
+    }
+  }
+}

@@ -1,0 +1,97 @@
+//
+// Outline Buttons
+//
+
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  color: $primary;
+  background-color: rgba($color: $primary, $alpha: 0.3);
+}
+
+.btn-outline-danger:hover,
+.btn-outline-danger:focus {
+  color: $danger;
+  background-color: rgba($color: $danger, $alpha: 0.3);
+}
+
+.btn-outline-success:hover,
+.btn-outline-success:focus {
+  color: $success;
+  background-color: rgba($color: $success, $alpha: 0.3);
+}
+
+.btn-outline-info:hover,
+.btn-outline-info:focus {
+  color: $info;
+  background-color: rgba($color: $info, $alpha: 0.3);
+}
+
+.btn-outline-warning:hover,
+.btn-outline-warning:focus {
+  color: $warning;
+  background-color: rgba($color: $warning, $alpha: 0.3);
+}
+
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus {
+  color: $secondary;
+  background-color: rgba($color: $secondary, $alpha: 0.3);
+}
+
+.btn-outline-dark:hover,
+.btn-outline-dark:focus {
+  color: $dark;
+  background-color: rgba($color: $dark, $alpha: 0.3);
+}
+
+//
+// light buttons
+//
+.btn-light-primary:hover,
+.btn-light-primary:focus {
+  background-color: $primary;
+  border-color: $primary;
+  color: $white !important;
+}
+
+.btn-light-danger:hover,
+.btn-light-danger:focus {
+  background-color: $danger;
+  border-color: $danger;
+  color: $white !important;
+}
+
+.btn-light-success:hover,
+.btn-light-success:focus {
+  background-color: $success;
+  border-color: $success;
+  color: $white !important;
+}
+
+.btn-light-info:hover,
+.btn-light-info:focus {
+  background-color: $info;
+  border-color: $info;
+  color: $white !important;
+}
+
+.btn-light-warning:hover,
+.btn-light-warning:focus {
+  background-color: $warning;
+  border-color: $warning;
+  color: $white !important;
+}
+
+.btn-light-secondary:hover,
+.btn-light-secondary:focus {
+  background-color: $secondary;
+  border-color: $secondary;
+  color: $white !important;
+}
+
+.btn-grp .btn {
+  transition: all 0.2s ease;
+  &:hover {
+    transform: translateY(-2px);
+  }
+}

@@ -1,0 +1,42 @@
+// ----------------------------------------------
+// Recent comment
+// ----------------------------------------------
+
+.hover-bg {
+  &:hover,
+  &.active {
+    background: $transparent-dark-bg;
+  }
+}
+
+.comment-widgets {
+  position: relative;
+  .comment-row {
+    &:hover,
+    &.active {
+      background: $transparent-dark-bg;
+    }
+  }
+}
+
+.comment-text {
+  &:hover .comment-footer,
+  &.active .comment-footer {
+    .action-icons {
+      visibility: visible;
+    }
+  }
+}
+
+.comment-footer {
+  .action-icons {
+    visibility: hidden;
+    a {
+      color: $gray-500;
+      &:hover,
+      &.active {
+        color: $primary;
+      }
+    }
+  }
+}

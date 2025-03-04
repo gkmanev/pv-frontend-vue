@@ -1,0 +1,112 @@
+// dashboard 1
+$active-bg: url(../images/background/active-bg.png) no-repeat top center;
+
+.active-bg {
+  background: $active-bg;
+}
+
+.round-overlap {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  left: 0;
+  right: 0;
+  top: 45px;
+  margin: 0 auto;
+  border: 2px solid $border-color;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// dashboard 2
+
+// Chart Inner Icons
+.chart-inner-icon {
+  position: absolute;
+  top: 25px;
+  left: 32px;
+}
+
+// dashboard 3
+.productsales-margin {
+  margin-top: -40px;
+}
+
+@include media-breakpoint-down(sm) {
+  .productsales-margin {
+    margin-top: 20px;
+  }
+}
+
+.hover-table {
+  tbody tr {
+    border-left: 4px solid transparent;
+    &:hover,
+    &.active {
+      border-left: 4px solid $info;
+    }
+  }
+}
+
+.profile-card {
+  img {
+    max-height: 380px;
+  }
+  .card-img-overlay {
+    background: rgba(7, 10, 43, 0.8);
+    display: flex;
+  }
+}
+
+.profile-tab {
+  li {
+    a.nav-link {
+      border: 0;
+      padding: 15px 20px;
+      color: $body-color;
+      font-weight: 400;
+      &.active {
+        border-bottom: 2px solid $info;
+        color: $info;
+      }
+      &:hover {
+        color: $info;
+      }
+    }
+  }
+}
+
+.profiletimeline {
+  position: relative;
+  padding-left: 40px;
+  margin: 10px 10px 0 30px;
+  border-left: 1px solid $border-color;
+  .sl-left {
+    margin-left: -60px;
+    z-index: 1;
+    margin-right: 15px;
+    img {
+      max-width: 40px;
+    }
+  }
+}
+
+.profiletimeline .sl-item {
+  margin-top: 8px;
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.profiletimeline .sl-date {
+  font-size: 12px;
+  color: $text-muted;
+}
+
+.calendar-app {
+  .comp-full-calendar {
+    height: 422px;
+    overflow: auto;
+  }
+}

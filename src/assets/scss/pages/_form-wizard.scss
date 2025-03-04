@@ -1,0 +1,49 @@
+.vue-form-wizard {
+  .stepTitle {
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 5px;
+  }
+  .wizard-nav-pills > li > a {
+    color: $text-muted !important;
+  }
+  .wizard-card-footer {
+    margin-top: 15px;
+  }
+}
+
+//
+// Todo
+//
+.cursor-move {
+  cursor: move;
+}
+
+.animation {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.todo-cards {
+  .card {
+    background: $light-primary;
+  }
+}
+
+.progress-cards {
+  .card {
+    background: $light-warning;
+  }
+}
+
+.completed-cards {
+  .card {
+    background: $light-success;
+  }
+}
+
+.hold-cards {
+  .card {
+    background: $light-danger;
+  }
+}

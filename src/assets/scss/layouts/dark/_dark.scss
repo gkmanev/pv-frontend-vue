@@ -1,0 +1,178 @@
+.dark {
+  background-color: $theme-dark-bg-layout;
+  color: $theme-dark-text-color;
+
+  .card,
+  .custom-select,
+  .table-light,
+  .table-light > th,
+  .table-light > td,
+  .nav-tabs .nav-link.active,
+  .nav-tabs .nav-item.show .nav-link,
+  .custom-control-label::before,
+  .custom-file-label,
+  .list-group-item,
+  .table {
+    background-color: $theme-dark-card-bg;
+  }
+
+  .dropdown-item:hover,
+  .dropdown-item:focus,
+  .card-header,
+  .card-footer,
+  .list-group-item.disabled,
+  .list-group-item:disabled,
+  .toast-header,
+  .custom-control-input[disabled] ~ .custom-control-label::before,
+  .custom-control-input:disabled ~ .custom-control-label::before,
+  .btn-outline-light:hover,
+  .form-control.focus,
+  .b-form-btn-label-control.form-control[aria-disabled="true"],
+  .b-form-btn-label-control.form-control[aria-readonly="true"],
+  .b-rating.disabled,
+  .b-rating:disabled {
+    background-color: $theme-dark-bg-light;
+  }
+  .bg-light {
+    background-color: $theme-dark-bg-light !important;
+  }
+  .custom-select {
+    background-blend-mode: exclusion;
+  }
+
+  .table-hover tbody tr:hover,
+  .table .thead-light th,
+  .page-link,
+  .table.b-table > tbody > .table-active,
+  .table.b-table > tbody > .table-active > th,
+  .table.b-table > tbody > .table-active > td,
+  .dropdown-menu,
+  .input-group-text,
+  .nav-tabs .nav-link.active,
+  .jumbotron,
+  .list-group-item-action:hover,
+  .list-group-item-action:focus,
+  .input-group > .custom-range,
+  .custom-file-label::after,
+  .progress,
+  .b-time[aria-disabled="true"] output,
+  .b-time[aria-readonly="true"] output,
+  .b-time output.disabled,
+  .b-form-spinbutton.disabled,
+  .b-form-spinbutton.readonly,
+  .toast {
+    background-color: $theme-dark-bg-layout !important;
+  }
+
+  .border,
+  .border-top,
+  .border-bottom,
+  .border-left,
+  .border-right,
+  .form-control,
+  .table th,
+  .table td,
+  .custom-select,
+  .page-link,
+  .dropdown-menu,
+  .dropdown-divider,
+  .input-group-text,
+  .nav-tabs .nav-link.active,
+  .nav-tabs .nav-item.show .nav-link,
+  .custom-control-label::before,
+  .nav-tabs,
+  .nav-tabs .nav-link:hover,
+  .nav-tabs .nav-link:focus,
+  .input-group > .custom-range,
+  .custom-file-label {
+    border-color: $dark-border-color !important;
+  }
+
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .table,
+  .table-hover tbody tr:hover,
+  .table .thead-light th,
+  .custom-select,
+  .dropdown-menu,
+  .dropdown-item,
+  .dropdown-item:hover,
+  .dropdown-item:focus,
+  .input-group-text,
+  .nav-tabs .nav-link.active,
+  .nav-tabs .nav-item.show .nav-link,
+  .list-group-item-action:hover,
+  .list-group-item-action:focus,
+  .list-group-item-action,
+  .custom-file-label::after,
+  .custom-file-label,
+  .toast-header,
+  .close,
+  .form-control.focus,
+  .form-control {
+    color: $theme-dark-text-color;
+  }
+
+  .text-dark,
+  pre {
+    color: $theme-dark-text-color2 !important;
+  }
+
+  a.link {
+    color: $theme-dark-text-color2;
+  }
+  .b-icon.bi {
+    fill: white;
+  }
+
+  //   colored view
+  .page-item.active .page-link {
+    background-color: $primary !important;
+  }
+
+  .table-info,
+  .table-info > th,
+  .table-info > td {
+    background-color: rgb(40 82 101);
+  }
+
+  .table-primary,
+  .table-primary > th,
+  .table-primary > td {
+    background-color: rgb(41 61 115);
+  }
+
+  .table-danger,
+  .table-danger > th,
+  .table-danger > td {
+    background-color: rgba($color: $danger, $alpha: 0.25);
+  }
+
+  .table-success,
+  .table-success > th,
+  .table-success > td {
+    background-color: rgba($color: $success, $alpha: 0.25);
+  }
+
+  .table-warning,
+  .table-warning > th,
+  .table-warning > td {
+    background-color: rgba($color: $warning, $alpha: 0.25);
+  }
+
+  // dashboard
+  .profile-tab li a.nav-link.active {
+    border-color: $info !important;
+    background-color: transparent !important;
+  }
+}

@@ -1,0 +1,61 @@
+// --------------------------------------------------------------------
+// Author Name   : Nirav Joshi
+// --------------------------------------------------------------------
+// For more info : https://www.wrappixel.com/
+// --------------------------------------------------------------------
+// Product Name  : Xtreme Admin
+// --------------------------------------------------------------------
+
+//
+// All the extended and custom variables(Required file)
+//
+@import "variables/variable";
+@import "variables/skins";
+@import "variables/custom-variable";
+
+@import "layouts/dark/dark";
+
+//
+// Import Bootstrap source files (Required file)
+//
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+@import "node_modules/bootstrap-vue/src/index.scss";
+
+//
+//This is for the layouts (Required file)
+//
+@import "layouts/topbar/topbar";
+@import "layouts/sidebar/sidebar";
+@import "layouts/container/container";
+@import "layouts/spinner/spinner";
+@import "layouts/reboot";
+
+// components
+@import "components/breadcrumb";
+@import "components/buttons";
+@import "components/alert";
+
+// pages
+@import "pages/form-wizard";
+@import "pages/dashboard";
+
+// widgets
+@import "widgets/comments";
+@import "widgets/chats";
+@import "widgets/steamline";
+
+//Theme colors
+
+// @import 'theme-colors/_theme-colors';
+@import "layouts/rtl/rtl";
+
+//Horizontal version
+@import "layouts/horizontal/horizontal";
+//
+//This is for the icons (Required file)
+//
+@import "icons/font-awesome/css/fontawesome-all.min.css";
+@import "icons/themify-icons/themify-icons.css";
+@import "icons/flag-icon-css/flag-icon.min.css";
+@import "icons/material-design-iconic-font/css/materialdesignicons.min.css";
+@import "icons/simple-line-icons/css/simple-line-icons.css";

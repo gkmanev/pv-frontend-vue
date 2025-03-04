@@ -1,0 +1,109 @@
+[dir="rtl"] {
+  @import "spacing-rtl";
+  body {
+    text-align: right;
+  }
+  .ml-auto {
+    margin-right: auto;
+    margin-left: unset !important;
+  }
+  .mr-auto {
+    margin-left: auto;
+    margin-right: unset !important;
+  }
+  .dropdown-menu {
+    left: auto;
+    right: 0;
+    text-align: right;
+  }
+  .dropdown-menu-right {
+    right: auto;
+    left: 0;
+  }
+
+  .navbar-nav,
+  .nav {
+    padding-right: 0;
+  }
+  .list-inline-item {
+    margin-right: 0.5rem;
+    margin-left: 0;
+  }
+  .dropdown-toggle::after {
+    margin-right: 7px;
+    margin-left: 0px;
+  }
+  .close-sidebar-btn {
+    left: 20px;
+    right: auto;
+  }
+  .breadcrumb-item + .breadcrumb-item {
+    padding-left: 0;
+    padding-right: 8px;
+    &::before {
+      float: right;
+      padding-left: 0.5rem;
+      padding-right: 0px;
+    }
+  }
+  .list-group {
+    padding-right: 0;
+  }
+  //   widgets
+  .chat-list {
+    .left-msg .chat {
+      border-top-right-radius: 5px;
+      border-bottom-left-radius: 25px;
+      border-top-left-radius: 25px;
+      border-bottom-right-radius: 25px;
+    }
+    .right-msg .chat {
+      border-top-right-radius: 25px;
+      border-bottom-left-radius: 25px;
+      border-top-left-radius: 5px;
+      border-bottom-right-radius: 25px;
+    }
+  }
+
+  // sidebar
+  .left-sidebar .nav .nav-item .nav-link {
+    padding: 14px 8px 14px 35px;
+  }
+
+  // dashboards
+  .hover-table tbody tr {
+    border-left: 0;
+    border-right: 4px solid transparent;
+    &:hover {
+      border-left: 0;
+      border-right: 4px solid $info;
+    }
+  }
+
+  .chart-inner-icon {
+    left: 19px;
+  }
+
+  .steamline {
+    border-left: 0;
+    border-right: 1px solid $border-color;
+    margin-left: 0;
+    margin-right: 20px;
+    .sl-left {
+      margin-right: -20px;
+      margin-left: 15px;
+    }
+  }
+
+  .profiletimeline {
+    border-left: 0;
+    border-right: 1px solid $border-color;
+    margin: 10px 30px 0 10px;
+    padding-left: 0;
+    padding-right: 40px;
+    .sl-left {
+      margin-left: 15px;
+      margin-right: -60px;
+    }
+  }
+}

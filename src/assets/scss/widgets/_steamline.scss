@@ -1,0 +1,41 @@
+.steamline {
+  position: relative;
+  border-left: 1px solid $border-color;
+  margin-left: 20px;
+  .sl-left {
+    margin-left: -20px;
+    z-index: 1;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    height: 40px;
+    border-radius: 100%;
+    color: $white;
+
+    margin-right: 15px;
+    img {
+      max-width: 40px;
+    }
+  }
+}
+
+.steamline .sl-right {
+  .desc,
+  .inline-photos {
+    margin-bottom: 21px;
+  }
+}
+
+.steamline .sl-item {
+  border-bottom: 1px solid $border-color;
+  margin: 20px 0;
+  display: flex;
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.sl-date {
+  font-size: 10px;
+  color: $gray-500;
+}

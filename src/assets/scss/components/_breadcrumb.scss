@@ -1,0 +1,9 @@
+.breadcrumb-colored {
+  a {
+    color: rgba($color: $white, $alpha: 0.7);
+  }
+  .breadcrumb-item.active,
+  .breadcrumb-item + .breadcrumb-item::before {
+    color: $white;
+  }
+}
