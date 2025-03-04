@@ -94,7 +94,7 @@
     //HighChartTest,
     //PriceChart,
    // TableChartSystem,   
-    MapCard,
+    //MapCard,
     //GridNodes,
     //StateOfCharge,
     MeasurementData,
