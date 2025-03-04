@@ -12,9 +12,9 @@
         </b-col>
     </b-row>
     <b-row>
-        <!-- <b-col cols="12" class="mt-4">
+        <b-col cols="12" class="mt-4">
             <MapCard />            
-        </b-col>      -->
+        </b-col>     
     </b-row>
     <b-row>
       <b-col cols="12" class="mt-4">
@@ -38,7 +38,7 @@
   // import TableChart from "../dashboard-components/echarts/TableChart";
 
   // import GridNodes from "../dashboard-components/echarts/GridNodes";
-  //import MapCard from '../dashboard-components/echarts/MapCard.vue';
+  import MapCard from '../dashboard-components/echarts/MapCard.vue';
  //import StateOfCharge from '../dashboard-components/echarts/StateOfCharge.vue';
   import MeasurementData from '../dashboard-components/echarts/MeasurementData.vue';
   import TableChartSystem from '../dashboard-components/echarts/TableChartSystem.vue';
@@ -94,7 +94,7 @@
     //HighChartTest,
     //PriceChart,
     TableChartSystem,   
-    //MapCard,
+    MapCard,
     //GridNodes,
     //StateOfCharge,
     MeasurementData,
