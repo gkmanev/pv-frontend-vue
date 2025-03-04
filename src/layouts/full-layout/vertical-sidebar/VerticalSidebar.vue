@@ -4,8 +4,8 @@
     :class="Sidebar_drawer ? `show-sidebar bg-${SidebarColor}` : `bg-${SidebarColor}`"
   >
     <div :class="`bg-${logoColor} navbar-header`">
-      <!-- <LogoDark v-if="logoColor == 'white'" />
-      <LogoLight v-else /> -->
+      <LogoDark v-if="logoColor == 'white'" />
+      <LogoLight v-else />
       <span
         class="d-block d-lg-none close-sidebar-btn"
         @click="showMobileSidebar"
@@ -57,8 +57,8 @@
 </template>
 
 <script>
-// import LogoDark from "../logo-dark/LogoDark";
-// import LogoLight from "../logo-light/LogoLight";
+import LogoDark from "../logo-dark/LogoDark";
+import LogoLight from "../logo-light/LogoLight";
 import { mapState } from "vuex";
 import SidebarData from "./SidebarData";
 import VuePerfectScrollbar from 'vue-perfect-scrollbar'
@@ -66,8 +66,8 @@ import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 export default {
   name: "VerticalSidebar",
   components: {
-    // LogoDark,
-    // LogoLight,
+    LogoDark,
+    LogoLight,
     VuePerfectScrollbar
   },
   data: () => ({

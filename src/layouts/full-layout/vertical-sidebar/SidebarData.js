@@ -3,21 +3,22 @@ export default [
   {
     id:"1200",
     icon: "zap",
-    title: "PV Dashboard",    
+    title: "Entra Dash",
+    i18n: "Entra Dash", 
     to: "/dashboard/entra"
   },  
   {
     id:"1201",
     icon: "bar-chart",
-    title: "PV Asset",     
+    title: "Client",     
     to: "/dashboard/client"
   },
-  // {
-  //   id:"1202",
-  //   icon: "bar-chart",
-  //   title: "System",     
-  //   to: "/dashboard/system"
-  // },
+  {
+    id:"1202",
+    icon: "bar-chart",
+    title: "System",     
+    to: "/dashboard/system"
+  },
   // {
   //   id: "1",
   //   icon: "crosshair",

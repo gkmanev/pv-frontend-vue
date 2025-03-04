@@ -1,8 +1,7 @@
 <template>
     <div>
-      <b-row>
-        <b-form-select v-model="selected" @change="setSelected(selected)" :options="options"></b-form-select>      
-      </b-row>
+      <b-form-select v-model="selected" @change="setSelected(selected)" :options="options"></b-form-select>      
+      <!-- <div class="mt-3">Selected: <strong>{{ selected }}</strong></div> -->
     </div>
   </template>
   
@@ -21,7 +20,7 @@
     computed: {
       ...mapState(['all_devs', 'selectedDev'])     
     }, 
-    mounted() {
+    mounted() {     
       this.populateOptions();
       if (this.selectedDev) {
         this.selected = this.selectedDev;
@@ -33,27 +32,24 @@
     },
     methods: {
       ...mapActions(['updateSelected']),
-      setSelected(sel) {        
+      setSelected(sel) {
         this.updateSelected(sel);
       },
-      populateOptions() {    
-        
+      populateOptions() {       
         const devOptions = this.all_devs.map(dev =>         
         ({                    
-          value: dev.farm, 
-          text: dev.farm,                              
-        }));   
+          value: dev.id, 
+          text: dev.id,  
+          //online: dev.online                  
+        }));        
+        devOptions.forEach(el => {        
+          if (el.online !== 'offline') {   
+                this.options.push(el);             
         
-        devOptions.forEach(el => {          
-          this.options.push(el);       
-        });        
+        }
+        });
       },
     },
   }
   </script>
   
-  <style scoped>
-  .custom-select {
-    max-width: 307px;
-}
-  </style>

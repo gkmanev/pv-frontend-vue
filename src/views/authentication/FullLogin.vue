@@ -11,12 +11,13 @@
               <div class="d-flex align-items-center">
                 <div class="p-5">
                   <b-row class="justify-content-center">
-                    <b-col cols="12" lg="12" xl="12">
+                    <b-col cols="12" lg="9" xl="9">
                       <div>
-                        <h2 class="display-6 text-white">
-                          PV Managment System
+                        <h2 class="display-5 text-white fw-medium">
+                          Elegant Design with unlimited features, built with
+                          love
                         </h2>
-                        <!-- <p class="mt-4 text-white op-5 font-weight-normal">
+                        <p class="mt-4 text-white op-5 font-weight-normal">
                           Wrappixel helps developers to build organized and
                           well-coded admin dashboards full of beautiful and
                           feature rich modules.
@@ -26,7 +27,7 @@
                           variant="info"
                           class="mt-4 text-capitalize"
                           >Learn More</b-button
-                        > -->
+                        >
                       </div>
                     </b-col>
                   </b-row>
@@ -41,7 +42,7 @@
                 <div class="p-5 w-100">
                   <b-row class="justify-content-center">
                     <b-col cols="12" lg="9" xl="6">
-                      <!-- <img src="@/assets/images/logo-icon.png" /> -->
+                      <img src="@/assets/images/logo-icon.png" />
                       <h2 class="font-weight-bold mt-4">Sign in</h2>
                       <h6 class="mb-4">
                         Don't have an account?
@@ -50,10 +51,7 @@
                         >
                       </h6>
 
-                      <!-- Display error message if login fails -->
-                      <b-alert variant="danger" v-if="error" dismissible>{{ error }}</b-alert>
-
-                      <b-form @submit.prevent="login">
+                      <b-form action="/dashboard/classic-dashboard">
                         <b-form-group>
                           <b-form-input
                             id="txt-username"
@@ -82,7 +80,15 @@
                         </b-form-group>
 
                         <div class="d-flex align-items-center">
-
+                          <b-form-checkbox
+                            id="checkbox-1"
+                            v-model="checkbox"
+                            name="checkbox-1"
+                            value="accepted"
+                            unchecked-value="not_accepted"
+                          >
+                            I accept the terms and use
+                          </b-form-checkbox>
 
                           <div class="ml-auto">
                             <a href="javascript:void(0)" class="link"
@@ -100,11 +106,33 @@
                           >Sign In</b-button
                         >
                       </b-form>
-
                       <div
                         class="d-flex align-items-center justify-content-center mt-4"
                       >
-           
+                        <b-badge
+                          href="#"
+                          pill
+                          variant="info"
+                          class="mr-2 px-3 py-2 d-flex align-items-center"
+                        >
+                          <feather
+                            type="twitter"
+                            class="feather-sm mr-2"
+                          ></feather>
+                          Twitter
+                        </b-badge>
+                        <b-badge
+                          href="#"
+                          pill
+                          variant="dark"
+                          class="px-3 py-2 d-flex align-items-center"
+                        >
+                          <feather
+                            type="github"
+                            class="feather-sm mr-2"
+                          ></feather
+                          >Github
+                        </b-badge>
                       </div>
                     </b-col>
                   </b-row>
@@ -121,8 +149,6 @@
 <script>
 import { validationMixin } from "vuelidate";
 import { required, minLength } from "vuelidate/lib/validators";
-import axios from "axios";
-
 export default {
   name: "FullLogin",
   mixins: [validationMixin],
@@ -132,8 +158,8 @@ export default {
       pwd: "",
     },
     checkbox: false,
-    error: null, // Error message for failed login
   }),
+  computed: {},
   validations: {
     form: {
       username: {
@@ -150,38 +176,6 @@ export default {
     validateState(username) {
       const { $dirty, $error } = this.$v.form[username];
       return $dirty ? !$error : null;
-    },
-
-    async login() {
-      try {
-        const response = await axios.post(
-          "http://209.38.208.230:8000/api/token/",
-          {
-            username: this.form.username,            
-            password: this.form.pwd,
-          },
-          {
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-          }
-        );
-        console.log(response.data)
-        // Store tokens in localStorage
-        localStorage.setItem("accessToken", response.data.access);
-        localStorage.setItem("refreshToken", response.data.refresh);
-        
-
-        // Redirect to a protected route
-        this.$router.push({ name: "PV Dashboard" });
-      } catch (error) {
-        console.error("Login error:", error.response);
-        if (error.response && error.response.status === 401) {
-          this.error = "Invalid username or password";
-        } else {
-          this.error = "An error occurred during login. Please try again later.";
-        }
-      }
     },
   },
 };
