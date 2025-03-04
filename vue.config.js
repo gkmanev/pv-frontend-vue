@@ -3,14 +3,18 @@ module.exports = {
   css: {
     loaderOptions: {
       css: {
-        minimize: false, // Disable CSS minification
+        // You can leave this blank or just omit the `minimize` option
       },
       postcss: {
         plugins: [
-          require('autoprefixer'), // Add autoprefixer if needed
-          // Remove cssnano from the PostCSS plugins
+          require('autoprefixer'),
         ],
       },
+    },
+  },
+  configureWebpack: {
+    optimization: {
+      minimize: false,  // Disable CSS and JS minification
     },
   },
 };
