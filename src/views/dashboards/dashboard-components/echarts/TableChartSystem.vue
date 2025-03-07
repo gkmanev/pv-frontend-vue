@@ -44,8 +44,8 @@
          inputCap:'',
          fields: [
          { key: 'farm', sortable: true },
-         { key: 'status', sortable: true },  
-         { key: 'updated', sortable: true, label: 'Updated' },      
+         { key: 'status', sortable: true, label: 'Commercial' },  
+         { key: 'updated', sortable: true, label: 'Tech' },      
          { key: 'power', sortable: true, label: 'Power kW'},
          {key: 'coordinates', sortable: true, label: 'Coordinates'},
       
@@ -84,7 +84,7 @@
               case 'updated':
                   return 'led-green';
               case 'not-updated':
-                  return 'led-red';
+                  return 'led-gray';
               case 'online':
                   return 'led-blue';
               case 'offline':
@@ -112,7 +112,7 @@
       
        async createAllDevs() {        
          this.all = this.all_devs   
-         console.log("checkThisAll",this.all)
+        
          this.all.forEach(dev => {
           dev.coordinates = `${dev.latitude} / ${dev.longitude}`;
           if (isNaN(dev.power)) {
@@ -167,7 +167,7 @@
  }
  
  .led-green {
-   background-color: #6ccd6c;
+   background-color: #4eefce;
  }
  
  .led-orange {

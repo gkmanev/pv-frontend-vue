@@ -119,7 +119,7 @@
   },
     mounted() {
         // Trigger "today" filter when the component is created
-        console.log()
+      
         this.handleFilter('2024');
       
     },

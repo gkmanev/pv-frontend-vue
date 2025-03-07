@@ -9,7 +9,7 @@
     import * as L from 'leaflet';
     import 'leaflet/dist/leaflet.css';
     import 'leaflet.heat'; // Import Leaflet.heat plugin
-    import axios from 'axios';
+    //import axios from 'axios';
     import { mapState } from 'vuex';
     
     export default {
@@ -39,100 +39,98 @@
       mounted() {
         this.initializeMap();      
         this.pollData();
-        this.fetchData();
+        //this.fetchData();
       },
     
       methods: {
-        async pollData() {
-          this.addressPoints = [];
-          this.polling = setInterval(async () => {
-            try {
-              await this.addData();
-            } catch (error) {
-              console.error('Error fetching data:', error);
-            }
-          }, 15000);
-        },
+
+        async createAllDevs() {        
+         this.all = this.all_devs        
+         this.all.forEach(dev => {
+          dev.coordinates = `${dev.latitude} / ${dev.longitude}`;
+          if (!isNaN(dev.power)) {
+            dev.power = parseFloat(dev.power).toFixed(2);
+          } 
+        });
+        return this.all
+       },
+
+
+       async pollData() {
+           this.polling = setInterval(async () => {
+             await this.addData(); 
+           }, 15000);
+         },
     
         normalizeValues(val) {
           return val / 100; // Adjust normalization as needed
         },
   
-      async fetchData() {
-        try {       
+    //   async fetchData() {
+
+    //     let all_devs = this.createAllDevs();
+
+    //   },         
   
-          let url = 'http://209.38.208.230:8000/api/pvmeasurementdata/?all=all'
-          const response = await axios.get(url);             
-          this.deviceData = response.data;
-          if (this.deviceData.length > 0) {
-            this.calculateAverageProductionPerFarm();
-          } else {
-            console.error('No data found');
-          }
-          this.calculateAverageProductionPerFarm();
-        } catch (error) {
-          console.error('There was an error fetching the data!', error);
-        }
-      },
+
       calculateAverageProductionPerFarm() {
-        const farmProduction = {};
+        // const farmProduction = {};
   
-        this.deviceData.forEach(farm => {
-          if (!farmProduction[farm.farm]) {
+        // this.deviceData.forEach(farm => {
+        //   if (!farmProduction[farm.farm]) {
             
-            farmProduction[farm.farm] = {
-              totalProduction: 0,
-              count: 0,
-              lat: farm.latitude,
-              long: farm.longitude,
-            };
-          }
-          farmProduction[farm.farm].totalProduction += parseFloat(farm.total_production);
-          farmProduction[farm.farm].count += 1;
-        });
+        //     farmProduction[farm.farm] = {
+        //       totalProduction: 0,
+        //       count: 0,
+        //       lat: farm.latitude,
+        //       long: farm.longitude,
+        //     };
+        //   }
+        //   farmProduction[farm.farm].totalProduction += parseFloat(farm.total_production);
+        //   farmProduction[farm.farm].count += 1;
+        // });
   
-        for (const farm in farmProduction) {
-          farmProduction[farm].averageProduction = farmProduction[farm].totalProduction / farmProduction[farm].count;
-          farmProduction[farm].farm = farm;
-          // farmProduction[farm].averageProduction = farmProduction[farm].lat;  
-        }
-        this.avgProductionPerFarm = farmProduction;  
+        // for (const farm in farmProduction) {
+        //   farmProduction[farm].averageProduction = farmProduction[farm].totalProduction / farmProduction[farm].count;
+        //   farmProduction[farm].farm = farm;
+        //   // farmProduction[farm].averageProduction = farmProduction[farm].lat;  
+        // }
+        // this.avgProductionPerFarm = farmProduction;  
         
         
         this.addData();    
        
       },
     
-        addData() {
+        async addData() {
   
-          this.addressPoints = [];
-          for (const farm in this.avgProductionPerFarm) {
+          this.addressPoints = [];          
+         
+          this.all_devs.forEach(dev => {
             
-            const farmData = this.avgProductionPerFarm[farm];  
-                 
-            const averageProduction = farmData.averageProduction;          
-            const lat = farmData.lat;
-            const long = farmData.long;
-            if (!isNaN(averageProduction) && averageProduction >= 0 && lat) {
+            const lat = dev.latitude;
+            const long = dev.longitude;
+            let power = dev.power;            
+            if (!isNaN(power) && power >= 0 && lat) {
               // let intensity = this.normalizeValues(averageProduction);
-              this.addressPoints.push([lat, long, averageProduction]);
+              this.addressPoints.push([lat, long, power/50]);
             }
             
-          }
-  
-          
+          });         
     
           if (this.heatLayer) {
             this.map.removeLayer(this.heatLayer);
-          }
-    
+          }    
+          
+          // cut the length of addressPoints to 2        
+           
           const heatPoints = this.addressPoints.map((p) => [p[0], p[1], p[2]]);
           this.heatLayer = L.heatLayer(heatPoints, this.heatLayerOptions).addTo(this.map);
         },
     
         initializeMap() {
           this.map = L.map('map-canvas', {
-            scrollWheelZoom: false // Disable scroll wheel zoom
+            scrollWheelZoom: true // Disable scroll wheel zoom
           }).setView(this.initialCenter, 6);
           L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',

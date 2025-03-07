@@ -92,8 +92,17 @@
       ...mapState(['dateRange']),    
   
     },
-    mounted() {       
+    mounted() {  
+    
       this.selectedPeriod = this.dateRange
+    },
+
+    watch: {      
+      dateRange(newRange, oldRange) {
+        if (newRange !== oldRange) {
+            this.selectedPeriod = newRange       
+        }
+      }
     },
   
     methods: {

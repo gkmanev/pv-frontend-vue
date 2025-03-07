@@ -67,7 +67,7 @@ export default {
     },
   methods: {
 
-    ...mapActions(['updateZoomData', 'updateResponseData']),
+    ...mapActions(['updateZoomData', 'updateResponseData', 'updateDateRange']),
 
     handleResize() {
       if (this.chart) {
@@ -136,6 +136,15 @@ export default {
           baseUrl = `http://209.38.208.230:8000/api/pvmeasurementdata/?all=all&${this.dateRange}=${this.dateRange}&farm=${this.selectedDev}`;
         }
       }     
+      else if (this.lastRouteSegment() == 'entra'){
+        if (this.dateRange === '7d'){  
+          this.updateDateRange('ytd')     
+          baseUrl = 'http://209.38.208.230:8000/api/pvmeasurementdata';
+          this.timestampField = 'day';
+          this.valueField = 'total_production'; 
+          baseUrl += `/?all=all&ytd=ytd`;          
+        }
+      }
        
       try {        
         const response = await axios.get(baseUrl);
@@ -424,9 +433,13 @@ export default {
 
         let filteredTimestamps = timestamps;
         let name = ''
+        let color = ''
         if (this.dateRange == '7d'){      
           name = 'Actual'
-        }        
+          color = 'orange'
+        } 
+     
+
      
         return Object.keys(groupedData).map(farm => {
         
@@ -440,17 +453,17 @@ export default {
             opacity:50
           },       
           lineStyle:{
-            color: 'orange'
+           // color: 'orange'
           },   
           connectNulls: false,
           showSymbol: false,
-            areaStyle: {
+          areaStyle: {
            
           },         
         }
           config.name = name ? name : farm
           config.data = data
-          config.color = 'orange'
+          config.color = color
           return config      
       });
       

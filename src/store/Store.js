@@ -60,7 +60,7 @@ export default new Vuex.Store({
 
 
     SET_DATE_RANGE(state, newRange) {
-      state.dateRange = newRange;
+      state.dateRange = newRange;     
     },
     SET_THEME(state, payload) {
       state.Theme = payload;

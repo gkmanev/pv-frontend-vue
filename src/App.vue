@@ -41,7 +41,7 @@ export default {
       const start_date = yesterday.toISOString().split('T')[0];
       const end_date = today.toISOString().split('T')[0];      
       const url = `http://209.38.208.230:8000/api/pvmeasurementdata/?start_date=${start_date}&end_date=${end_date}`;
-      console.log(url);
+      
       axios.get(url)
       .then(response => {        
         if(response.data.length > 0){
