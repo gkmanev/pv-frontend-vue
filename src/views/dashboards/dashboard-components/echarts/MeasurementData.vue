@@ -124,6 +124,7 @@ export default {
           const predictionsUrl = `http://85.14.6.37:2323/api/pvforecast/?farm=${this.selectedDev}`
           baseUrl = `http://209.38.208.230:8000/api/pvmeasurementdata/?${this.dateRange}=${this.dateRange}&farm=${this.selectedDev}`;
           const baseUrlTechnical = `http://209.38.208.230:8000/api/pvdata/?farm=${this.selectedDev}`
+          console.log(baseUrlTechnical)
           const response = await axios.get(baseUrlTechnical);
           this.technicalData = response.data;         
           const responsePredictions = await axios.get(predictionsUrl);
@@ -214,10 +215,10 @@ export default {
       }
       if (this.selectedDev && this.lastRouteSegment() !== 'entra'){
         if (this.dateRange == 'y-1' || this.dateRange == 'y-2'){
-          titleText = `PV Production [kWh] | ${this.selectedDev} | Daily Resolution`;
+          titleText = `Production [kWh]`;
         }
         else {
-          titleText = `PV Production [kWh] | ${this.selectedDev} | Res 15min`;
+          titleText = `Production [kWh]`;
         }        
         const timestamps = this.getAllTimestamps(this.measurementData); 
         const groupedData = this.groupDataByFarm(this.measurementData);         
@@ -243,16 +244,46 @@ export default {
         allSeries = series.concat(technicalSeries).concat(newSeriesMax).concat(newSeriesMin).concat(predictionsSeries);        
         tooltipConfig = this.getTooltipConfig();
         series[0].areaStyle.opacity = 0
-        series[0].lineStyle.color = "orange"
-        
+        series[0].lineStyle.color = "orange"        
       }     
+
+      // Get today's date
+      const today = new Date();
+      const currentDateTime = today.toISOString();
+      // Add markLine to the series
+      allSeries.forEach(series => {
+        if (!series.markLine) {
+          series.markLine = {
+        symbol: 'none',
+        data: [
+          {
+            xAxis: currentDateTime,
+            label: {
+          formatter: 'Now',
+          position: 'insideEndBottom',
+          padding: [2, 4, 2, 4], // Add padding to remove the arrow
+          backgroundColor: 'transparent', // Make the background transparent
+          borderWidth: 0, // Remove the border                 
+          color: 'gray',
+          fontSize: 12,                  
+            },
+            lineStyle: {
+          color: 'gray',
+          type: 'dotted'
+            }
+          }
+        ]
+          };
+        }
+      });
+
       this.option = {
         title: {
             text: titleText, 
             left: 'center', 
             top: 'top',  
             textStyle: {
-              fontSize: 16,
+              fontSize: 18,
               color:'#b2b9bf',
               fontFamily: 'Arial',
               fontWeight: 'normal'
@@ -500,9 +531,9 @@ export default {
           const config = {          
           type: 'line',       
           lineStyle:{
-            width: 1,
+            width: 2,
             color: 'yellow',
-            opacity: 0.7,
+            opacity: 1,
             type: 'dotted'
           },   
           connectNulls: false,

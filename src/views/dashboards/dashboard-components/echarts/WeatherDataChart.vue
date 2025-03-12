@@ -150,17 +150,44 @@ export default {
         totalSeries = fiveDaysAgoForecast.concat(fiveDaysAgo).concat(dayBefore).concat(seriesToday).concat(dayAhead);        
       }     
 
-      
-      
+      // Get today's date
+      const today = new Date();
+      const currentDateTime = today.toISOString();
+      // Add markLine to the series
+      totalSeries.forEach(series => {
+        if (!series.markLine) {
+          series.markLine = {
+        symbol: 'none',
+        data: [
+          {
+            xAxis: currentDateTime,
+            label: {
+          formatter: 'Now',
+          position: 'insideEndBottom',
+          padding: [2, 4, 2, 4], // Add padding to remove the arrow
+          backgroundColor: 'transparent', // Make the background transparent
+          borderWidth: 0, // Remove the border                 
+          color: 'gray',
+          fontSize: 12,                  
+            },
+            lineStyle: {
+          color: 'gray',
+          type: 'dotted'
+            }
+          }
+        ]
+          };
+        }
+      });      
       //series.push(...dayAhead); 
       const xAxis = this.getXAxisConfig(timestamps);
       this.option = {
         title: {
-            text: 'Direct Radiation [W/m²]', 
+            text: 'Radiation [W/m²]', 
             left: 'center',
             top: 'top',   
             textStyle: {
-              fontSize: 16,
+              fontSize: 18,
               color:'#b2b9bf',
               fontFamily: 'Arial',
               fontWeight: 'normal'
@@ -327,7 +354,9 @@ export default {
           type: 'line',         
           connectNulls: false,
           lineStyle: {
-            color: 'rgba(255,255,255,0.6)',            
+            color: 'yellow',
+            type: 'dotted',
+            width: 2            
           },
           showSymbol: false,
     
@@ -355,12 +384,12 @@ export default {
           type: 'line',          
           connectNulls: false,
           lineStyle: {
-            color: 'rgba(255,255,255,1)',
+            color: 'orange' //'rgba(255,255,255,1)',
 
           },
           showSymbol: false,
           data: data,
-          color: 'rgba(255,255,255,1)'
+          color: 'orange' //'rgba(255,255,255,1)'
         };
       })
      
@@ -385,10 +414,9 @@ export default {
           color:'orange',         
           connectNulls: false,
           lineStyle: {
-            color: 'orange',
+            color: 'yellow', //'rgba(255,255,255,0.3)',
             type: 'dotted',
-            opacity: 1,
-            width: 1
+            width: 2
           },
           showSymbol: false,
           data: data,        
@@ -418,12 +446,12 @@ export default {
           type: 'line',         
           connectNulls: false,
           lineStyle: {
-            color: 'rgba(255,255,255,1)',
+            color: 'orange' //'rgba(255,255,255,1)',
 
           },
           showSymbol: false,
           data: data,
-          color: 'rgba(255,255,255,1)'
+          color: 'orange' //'rgba(255,255,255,1)'
         };
       })
     },
@@ -442,12 +470,13 @@ export default {
           type: 'line',         
           connectNulls: false,
           lineStyle: {
-            color: 'rgba(255,255,255,0.3)',
-            type: 'dotted'
+            color: 'yellow', //'rgba(255,255,255,0.3)',
+            type: 'dotted',
+            width: 2
           },
           showSymbol: false,
           data: data,
-          color: 'rgba(255,255,255,0.3)'
+          color: 'yellow' //'rgba(255,255,255,0.3)'
         };
       })
     },

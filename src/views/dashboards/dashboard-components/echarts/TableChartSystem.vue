@@ -5,10 +5,10 @@
          <h5 class="card-title mb-3">All Farms Data</h5>
          <b-table :items="all" :fields="fields" :select-mode="selectMode" responsive="sm" ref="selectableTable" selectable @row-selected="onRowSelected">
            <!-- Scoped slot for the 'online' status -->
-           <template #cell(status)="{ item }">
+           <template #cell(updated)="{ item }">
              <span class="led-indicator" :class="getLedClass(item.online)"></span>
            </template>
-           <template #cell(updated)="{ item }">
+           <template #cell(status)="{ item }">
              <span class="led-indicator" :class="getLedClass(item.commercial)"></span>
            </template>
          </b-table>
@@ -112,7 +112,7 @@
       
        async createAllDevs() {        
          this.all = this.all_devs   
-        
+         console.log(this.all)
          this.all.forEach(dev => {
           dev.coordinates = `${dev.latitude} / ${dev.longitude}`;
           if (isNaN(dev.power)) {
